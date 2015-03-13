@@ -1,9 +1,6 @@
 {
   "name": "angular-extras",
   "version": "0.0.0",
-  "authors": [
-    "Max Bruchmann <bruchmann@signal7.de>"
-  ],
   "license": "MIT",
   "private": true,
   "ignore": [
@@ -15,6 +12,7 @@
   ],
   "dependencies": {
     "angular-material": "~0.8.3",
-    "ui-router": "~0.2.13"
+    "ui-router": "~0.2.13",
+    "angular-utils-pagination": "#~0.5.1"
   }
 }

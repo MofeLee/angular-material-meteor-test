@@ -1,0 +1,75 @@
+<form name="partyForm" ng-submit="createParty(newParty)">
+
+    <div layout layout-sm="column">
+        <md-input-container flex>
+            <label>Name</label>
+            <input required="true" ng-model="newParty.name">
+        </md-input-container>
+        <md-input-container flex>
+            <label>Description</label>
+            <input ng-model="newParty.description">
+        </md-input-container>
+        <md-input-container>
+            <md-switch ng-model="newParty.public" aria-label="Switch 1">
+                Public
+            </md-switch>
+        </md-input-container>
+        <md-input-container>
+            <md-button ng-disabled="partyForm.$invalid">
+                Add
+            </md-button>
+        </md-input-container>
+        <md-input-container>
+            <md-button ng-click="removeAll()" class="md-raised md-primary">
+                Remove All
+            </md-button>
+        </md-input-container>
+
+    </div>
+
+</form>
+
+<div layout layout="column">
+
+    <md-input-container flex>
+        <md-icon md-svg-src="/assets/svg/mail.svg"></md-icon>
+        <label>Search</label>
+        <input type="search" ng-model="search" placeholder="Search">
+    </md-input-container>
+    <md-input-container>
+        <md-select ng-model="orderProperty">
+            <md-option value="1">Ascending</md-option>
+            <md-option value="-1">Descending</md-option>
+        </md-select>
+    </md-input-container>
+
+</div>
+<div layout layout-sm="column">
+
+    <md-list flex>
+        <md-item dir-paginate="party in parties | itemsPerPage: perPage" total-items="partiesCount.count">
+            <md-item-content>
+                <div class="md-itle-left">
+                    <a href="/parties/{{party._id}}">
+                        <md-icon md-svg-icon="menu"></md-icon>
+                    </a>
+                </div>
+
+                <div class="md-tile-content">
+                    <md-button ui-sref="parties.detail({partyId:party._id})">
+                        {{party.name}}
+                    </md-button>
+
+                    <p>{{party.description}}</p>
+                </div>
+
+                <md-button ng-click="remove(party)" class="md-raised md-primary">X</md-button>
+            </md-item-content>
+        </md-item>
+    </md-list>
+
+    <div ui-view>
+
+    </div>
+</div>
+<dir-pagination-controls on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>

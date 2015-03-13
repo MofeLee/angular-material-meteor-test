@@ -12,7 +12,9 @@ Package.onUse(function(api) {
     'bower_components/angular-animate/angular-animate.min.js',
     'bower_components/angular-aria/angular-aria.min.js',
     'bower_components/angular-material/angular-material.min.js',
-    'bower_components/angular-material/angular-material.min.css'
+    'bower_components/angular-material/angular-material.min.css',
+
+    'bower_components/angular-utils-pagination/dirPagination.js'
 
   ], 'client');
 
