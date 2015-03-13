@@ -1,1 +1,21 @@
-Here you will see the details of party number: {{ partyId }}
+<form name="partyForm" ng-submit="updateParty(party)">
+
+    <div layout layout-sm="column">
+        <md-input-container flex>
+            <label>Name</label>
+            <input required="true" ng-model="party.name">
+        </md-input-container>
+        <md-input-container flex>
+            <label>Description</label>
+            <input ng-model="party.description">
+        </md-input-container>
+        <md-input-container>
+
+            <md-button ng-disabled="partyForm.$invalid">
+                Update
+            </md-button>
+        </md-input-container>
+
+    </div>
+
+</form>
