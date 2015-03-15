@@ -1,0 +1,51 @@
+<form name="partyForm" ng-submit="createParty(newParty)" novalidate>
+
+    {{invalidKeys}}
+    <md-content layout="column">
+        <md-content layout="column" flex>
+            <md-input-container flex>
+                <label>Name</label>
+                <input name="name" ng-model="newParty.name">
+
+                myForm.input.$valid = {{partyForm.name.$valid}}<br>
+                myForm.input.$error = {{partyForm.name.$error}}<br>
+            </md-input-container>
+            <md-input-container flex>
+                <label>Description</label>
+                <input name="description" ng-model="newParty.description">
+            </md-input-container>
+            <md-input-container>
+                <md-switch ng-model="newParty.public" aria-label="Switch 1">
+                    Public
+                </md-switch>
+            </md-input-container>
+            <md-content layout="row">
+                <md-input-container>
+                    <label>X</label>
+                    <md-input type="number" ng-model="newParty.location.x" aria-label="X" >
+                    </md-input>
+                </md-input-container>
+                <md-input-container>
+                    <label>Y</label>
+                    <md-input type="number" ng-model="newParty.location.y" aria-label="y">
+
+                    </md-input>
+                </md-input-container>
+            </md-content>
+
+        </md-content>
+        <md-content layout="row" layout-align="end center">
+
+
+            <md-button ng-disabled="partyForm.$invalid">
+                Add
+            </md-button>
+
+
+            <md-button ng-click="removeAll()" class="md-raised md-primary">
+                Remove All
+            </md-button>
+
+        </md-content>
+    </md-content>
+</form>

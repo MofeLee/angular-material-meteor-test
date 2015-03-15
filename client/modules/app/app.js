@@ -9,7 +9,7 @@ function forwardToLogin($translate, $state) {
   var lang = $translate.use();
   $state.go('app.banana', {locale: lang}, {notify: false});
 }
-app.run(function ($rootScope, $state, $translate, $mdDialog, $meteor) {
+var userLoggingLoadingHandling = ["$rootScope", "$state", "$translate", "$mdDialog", "$meteor", function ($rootScope, $state, $translate, $mdDialog, $meteor) {
 
   var loadDialog;
   $meteor.autorun($rootScope, function () {
@@ -65,7 +65,8 @@ app.run(function ($rootScope, $state, $translate, $mdDialog, $meteor) {
       }
     }
   });
-});
+}];
+app.run(userLoggingLoadingHandling);
 
 app.config(['$urlRouterProvider', '$stateProvider', '$locationProvider',
   function ($urlRouterProvider, $stateProvider, $locationProvider) {
@@ -82,7 +83,7 @@ app.config(['$urlRouterProvider', '$stateProvider', '$locationProvider',
       })
       .state('app.banana', {
         url: '/banana',
-        templateUrl: 'client/parties/views/banana.ng.html'//,
+        templateUrl: 'client/modules/parties/views/banana.ng.html'//,
         //controller: ['$stateParams', function ($stateParams) {
         //  var lang = $stateParams.locale;
         //  console.log(lang)
@@ -100,3 +101,12 @@ app.controller('AppCtrl', ['$scope', '$mdSidenav', function ($scope, $mdSidenav)
     $mdSidenav('left').close();
   }
 }]);
+
+app.directive("ptLoading", function(){
+  return {
+    scope : {
+      message : "@"
+    },
+    templateUrl: 'client/partials/loading.ng.html'
+  };
+});

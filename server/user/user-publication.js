@@ -1,10 +1,4 @@
-var throttle = function (callback) {
-  setTimeout(function () {
-    callback(null)
-  }, 3000);
-};
 
-var syncThrottle = Meteor.wrapAsync(throttle);
 
 Meteor.publish(null, function () {
   //var start = new Date();

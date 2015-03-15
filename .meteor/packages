@@ -11,3 +11,5 @@ accounts-password
 accounts-ui
 tmeasday:publish-counts
 less
+aldeed:simple-schema
+aldeed:collection2

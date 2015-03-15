@@ -1,15 +1,16 @@
 Meteor.methods({
   "insertParty": function (doc) {
 
-    if (!Meteor.userId()) {
+    check(doc, Schemas.PartyFormInsertSchema)
+    var userId =Meteor.userId();
+
+    if (!userId) {
       throw new Meteor.Error(403, "You must be logged in");
     }
 
-    var partyId = Parties.insert(doc, function (err) {
-      if (err) {
-        Meteor.Error(400, err);
-      }
-    });
+    doc.owner = userId;
+
+    var partyId = Parties.insert(doc);
 
     return partyId;
   }

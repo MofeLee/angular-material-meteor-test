@@ -9,10 +9,11 @@ Package.onUse(function (api) {
 
   api.addFiles([
 
-    'bower_components/angular-animate/angular-animate.min.js',
-    'bower_components/angular-aria/angular-aria.min.js',
-    'bower_components/angular-material/angular-material.min.js',
-    'bower_components/angular-material/angular-material.min.css',
+    'cdn.js',
+    //'bower_components/angular-animate/angular-animate.min.js',
+    //'bower_components/angular-aria/angular-aria.min.js',
+    //'bower_components/angular-material/angular-material.min.js',
+    //'bower_components/angular-material/angular-material.min.css',
 
     'bower_components/angular-utils-pagination/dirPagination.js',
     'bower_components/angular-translate/angular-translate.min.js'

@@ -1,16 +1,12 @@
-<h3 translate="GREETING"></h3>
-<div ng-include="'client/parties/views/parties-insert.ng.html'"></div>
-
-
 
 <div layout layout="column">
 
     <md-input-container flex>
         <label>Search</label>
-        <input type="search" ng-model="search" p>
+        <input type="search" ng-model="search.search" p>
     </md-input-container>
     <md-input-container>
-        <md-select ng-model="orderProperty">
+        <md-select ng-model="search.orderProperty">
             <md-option value="1">Ascending</md-option>
             <md-option value="-1">Descending</md-option>
         </md-select>
@@ -21,7 +17,7 @@
 <div layout layout-sm="column">
 
     <md-list flex>
-        <md-item dir-paginate="party in parties | itemsPerPage: perPage" total-items="partiesCount.count">
+        <md-item dir-paginate="party in parties | itemsPerPage: search.perPage" total-items="partiesCount.count">
             <md-item-content>
                 <div class="md-itle-left">
                     <a href="/parties/{{party._id}}">

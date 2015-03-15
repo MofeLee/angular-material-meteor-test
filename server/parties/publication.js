@@ -20,6 +20,7 @@ Meteor.publish("parties", function (options, searchString) {
     ]
   }), {noReady: true});
 
+  syncThrottle();
   return Parties.find({
     'name': {'$regex': '.*' + searchString || '' + '.*', '$options': 'i'},
     $or: [
