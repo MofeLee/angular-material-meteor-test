@@ -2,10 +2,10 @@ Package.describe({
   name: 'angular-extras'
 });
 
-Package.onUse(function(api) {
+Package.onUse(function (api) {
   api.versionsFrom('1.0');
 
-  api.use("urigo:angular", ["client", "server"])
+  api.use("urigo:angular", ["client", "server"]);
 
   api.addFiles([
 
@@ -14,7 +14,9 @@ Package.onUse(function(api) {
     'bower_components/angular-material/angular-material.min.js',
     'bower_components/angular-material/angular-material.min.css',
 
-    'bower_components/angular-utils-pagination/dirPagination.js'
+    'bower_components/angular-utils-pagination/dirPagination.js',
+    'bower_components/angular-translate/angular-translate.min.js'
+
 
   ], 'client');
 

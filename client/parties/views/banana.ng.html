@@ -1,1 +1,16 @@
 <h1>Hurz</h1>
+<h3 translate="GREETING"></h3>
+
+<a ui-sref="app.banana({locale: 'en'})">EN</a>
+<a ui-sref="app.banana({locale: 'it'})">IT</a>
+<a ui-sref="app.banana({locale: 'de'})">DE</a>
+
+
+{{$locale}}
+
+<div layout="row" layout-wrap>
+    <div flex="33">[flex=33]</div>
+    <div flex="66">[flex=66]</div>
+    <div flex="66">[flex=66]</div>
+    <div flex="33">[flex=33]</div>
+</div>

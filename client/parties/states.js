@@ -14,10 +14,6 @@ angular.module("parties").config(['$urlRouterProvider', '$stateProvider', '$loca
         url: '/:partyId',
         templateUrl: 'client/parties/views/party-details.ng.html',
         controller: 'PartyDetailsCtrl'
-      })
-      .state('banana', {
-        url: '/banana',
-        templateUrl: 'client/parties/views/banana.ng.html'
       });
 
     $urlRouterProvider.otherwise("/parties");

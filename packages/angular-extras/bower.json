@@ -13,6 +13,8 @@
   "dependencies": {
     "angular-material": "~0.8.3",
     "ui-router": "~0.2.13",
-    "angular-utils-pagination": "#~0.5.1"
+    "angular-utils-pagination": "#~0.5.1",
+    "angular-translate": "~2.6.1",
+    "material-design-icons": "~1.0.1"
   }
 }

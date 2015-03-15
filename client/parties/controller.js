@@ -44,10 +44,20 @@ angular.module("parties").controller("PartiesListCtrl", ['$scope', '$meteor', '$
 
     $scope.createParty = function (party) {
       party.owner = $rootScope.currentUser._id;
-      $scope.parties.push(party);
-      $scope.newParty = null;
-      $scope.partyForm.$setValidity();
-      $scope.partyForm.$setPristine();
+      var self = this;
+      //$scope.parties.push(party);
+      $meteor.call("insertParty", party).then(function (data) {
+        self.newParty = {};
+        // not working 100%
+        self.partyForm.$setUntouched();
+        self.partyForm.$setPristine();
+      }, function (error) {
+        console.log(error)
+      });
+
+      //$scope.newParty = {};
+      //$scope.partyForm.$setValidity();
+      //$scope.partyForm.$setPristine();
     };
 
     $scope.pageChanged = function (newPage) {
@@ -62,7 +72,11 @@ angular.module("parties").controller("PartiesListCtrl", ['$scope', '$meteor', '$
 
   }]);
 
-angular.module("parties").controller("PartyDetailsCtrl", ['$scope', '$stateParams', '$meteor', '$state',
+angular.module("parties").controller("PartyDetailsCtrl", [
+  '$scope',
+  '$stateParams',
+  '$meteor',
+  '$state',
   function ($scope, $stateParams, $meteor, $state) {
     $scope.party = $meteor.object(Parties, $stateParams.partyId);
 

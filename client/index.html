@@ -1,0 +1,55 @@
+<head>
+    <base href="/">
+    <style>
+        .translate-cloak {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="body" ng-app="socially" translate-cloak layout="row" ng-controller="AppCtrl">
+
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-swipe-left="closeLeft()">
+        <md-toolbar class="md-default-theme">
+            <h1 class="md-toolbar-tools">
+                <a ng-href="/" layout="row" flex="" href="/">
+                    <div>planet.training</div>
+                </a>
+            </h1>
+        </md-toolbar>
+        <md-content role="navigation" flex flex-fill>
+            <ul class="docs-menu">
+                <li>
+                    <md-button ui-sref="parties">Home</md-button>
+                </li>
+                <li>
+                    <md-button ui-sref="app.banana({'locale':'de'})" >Banana</md-button>
+                </li>
+            </ul>
+        </md-content>
+
+    </md-sidenav>
+    <div layout="column" tabindex="-1" role="main" flex>
+
+
+        <md-toolbar layout="row">
+            <div class="md-toolbar-tools">
+                <button class="docs-menu-icon" hide-gt-md aria-label="Toggle Menu" ng-click="toggleLeft()">
+
+                    <md-icon md-svg-icon="menu" class="ng-isolate-scope md-default-theme"
+                             aria-hidden="true"></md-icon>
+                </button>
+                <div class="fill-height" layout="row" flex>
+
+                    <h1>Angular Material</h1>
+                    {{> loginButtons }}
+                </div>
+            </div>
+        </md-toolbar>
+
+
+        <md-content ui-view md-scroll-y flex class="md-content md-scroll-y md-padding"></md-content>
+    </div>
+
+</div>
+</body>

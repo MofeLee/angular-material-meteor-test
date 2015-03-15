@@ -1,40 +1,13 @@
-<form name="partyForm" ng-submit="createParty(newParty)">
+<h3 translate="GREETING"></h3>
+<div ng-include="'client/parties/views/parties-insert.ng.html'"></div>
 
-    <div layout layout-sm="column">
-        <md-input-container flex>
-            <label>Name</label>
-            <input required="true" ng-model="newParty.name">
-        </md-input-container>
-        <md-input-container flex>
-            <label>Description</label>
-            <input ng-model="newParty.description">
-        </md-input-container>
-        <md-input-container>
-            <md-switch ng-model="newParty.public" aria-label="Switch 1">
-                Public
-            </md-switch>
-        </md-input-container>
-        <md-input-container>
-            <md-button ng-disabled="partyForm.$invalid">
-                Add
-            </md-button>
-        </md-input-container>
-        <md-input-container>
-            <md-button ng-click="removeAll()" class="md-raised md-primary">
-                Remove All
-            </md-button>
-        </md-input-container>
 
-    </div>
-
-</form>
 
 <div layout layout="column">
 
     <md-input-container flex>
-        <md-icon md-svg-src="/assets/svg/mail.svg"></md-icon>
         <label>Search</label>
-        <input type="search" ng-model="search" placeholder="Search">
+        <input type="search" ng-model="search" p>
     </md-input-container>
     <md-input-container>
         <md-select ng-model="orderProperty">
@@ -44,6 +17,7 @@
     </md-input-container>
 
 </div>
+
 <div layout layout-sm="column">
 
     <md-list flex>
