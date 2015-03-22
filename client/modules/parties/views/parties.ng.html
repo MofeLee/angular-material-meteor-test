@@ -1,5 +1,11 @@
 <h3 translate="GREETING"></h3>
 
 
+<div ng-hide="loading">
+
+
 <div ng-include="'client/modules/parties/views/parties-list.ng.html'"></div>
 <div ng-include="'client/modules/parties/views/parties-insert.ng.html'"></div>
+</div>
+
+<pt-loading ng-if="loading"></pt-loading>

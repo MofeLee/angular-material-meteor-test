@@ -1,7 +1,7 @@
-var app = angular.module('socially', ['parties']);
+var app = angular.module('socially', ['parties', 'training']);
 
 var checkOnStates = {
-  mustBeLoggedIn: ['parties', 'parties.details']
+  mustBeLoggedIn: ['parties', 'parties.details', 'training']
 };
 
 
@@ -102,10 +102,10 @@ app.controller('AppCtrl', ['$scope', '$mdSidenav', function ($scope, $mdSidenav)
   }
 }]);
 
-app.directive("ptLoading", function(){
+app.directive("ptLoading", function () {
   return {
-    scope : {
-      message : "@"
+    scope: {
+      message: "@"
     },
     templateUrl: 'client/partials/loading.ng.html'
   };

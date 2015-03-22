@@ -39,3 +39,7 @@ Meteor.publish("parties", function (options, searchString) {
     ]
   }, options);
 });
+
+Meteor.publish("partyDetail", function (partyId) {
+  return Parties.find({_id: partyId});
+});

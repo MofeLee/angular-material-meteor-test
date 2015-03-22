@@ -1,13 +1,27 @@
 <form name="partyForm" ng-submit="updateParty(party)">
 
-    <div layout layout-sm="column">
+    <div layout="column">
         <md-input-container flex>
             <label>Name</label>
-            <input required="true" ng-model="party.name">
+            <input required="true" ng-model="party.name" name="name">
+            <div ng-messages="partyForm.name.$error" ng-show="partyForm.name.$invalid">
+                <div ng-message="required" >
+                    <span translate="FORM_VALIDATION_REQUIRE"></span>
+                </div>
+            </div>
         </md-input-container>
         <md-input-container flex>
             <label>Description</label>
-            <input ng-model="party.description">
+            <input ng-model="party.description" name="description">
+        </md-input-container>
+        <md-input-container>
+            <label>Email</label>
+            <input type="email" name="emails.0.address" ng-model="party.emails[0]['address']">
+            <div ng-messages="partyForm['emails.0.address'].$error" ng-show="partyForm['emails.0.address'].$invalid">
+                <div ng-message="email">
+                    <span translate="FORM_VALIDATION_REGEX"></span>
+                </div>
+            </div>
         </md-input-container>
         <md-input-container>
 

@@ -1,0 +1,74 @@
+<h1>Training Form</h1>
+
+<form name="trainingForm" ng-submit="insertUpdateTraining(training)" novalidate>
+
+    <div layout="column">
+        <md-input-container flex>
+            <label>Name</label>
+            <input required="true" ng-model="training.name" name="name"
+                   md-is-error="training._id ? trainingForm.name.$touched && trainingForm.name.$invalid : trainingForm.name.$dirty">
+
+            <div ng-messages="trainingForm.name.$error" ng-if="trainingForm.name.$dirty">
+                <div ng-message="required">
+                    <span translate="FORM_VALIDATION_REQUIRE"></span>
+                </div>
+            </div>
+        </md-input-container>
+        <md-input-container flex>
+            <label>Description</label>
+            <text-angular-toolbar name="toolbar1"></text-angular-toolbar>
+            <text-angular ta-target-toolbars="toolbar1" ng-model="training.description" required></text-angular>
+
+        </md-input-container>
+
+        <md-input-container flex>
+            <label>Comment</label>
+
+            <div ng-model="training.comment" medium-editor
+                 options="{placeholder: 'Enter a title', disableToolbar: false, forcePlainText: true, disableReturn: false}"></div>
+
+        </md-input-container>
+
+        <div option="{placeholder: 'Enter a title'}"></div>
+
+        <md-input-container>
+
+            <md-select ng-model="training.type" multiple="">
+                <md-select-label>Select a state</md-select-label>
+
+                <md-option ng-value="1">Hallo</md-option>
+                <md-option ng-value="2">Huii</md-option>
+                <md-option ng-value="3">Kraas</md-option>
+                <md-option ng-value="4">Pferd</md-option>
+            </md-select>
+        </md-input-container>
+
+        <md-input-container>
+            <md-autocomplete md-search-text="searchText" ng-model="training.state"
+                             md-items="item in ctrl.querySearch(ctrl.searchText)"
+                             placeholder="What is your favorite US state?">
+                <span md-highlight-text="searchText">{{item.display}}</span>
+            </md-autocomplete>
+        </md-input-container>
+
+
+
+
+        <ui-select multiple ng-model="training.state" style="width: 300px;" title="Choose a color">
+            <ui-select-match placeholder="Select colors...">{{$item}}</ui-select-match>
+            <ui-select-choices repeat="color in availableColors | filter:$select.search">
+                {{color}}
+            </ui-select-choices>
+        </ui-select>
+
+        <div layout="row" layout-align="end">
+
+            <md-button ng-disabled="partyForm.$invalid">
+                Update
+            </md-button>
+
+        </div>
+
+    </div>
+
+</form>

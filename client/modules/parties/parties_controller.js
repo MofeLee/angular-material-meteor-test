@@ -1,11 +1,58 @@
+//function removeEmptyObjects(doc) {
+//  _.each(doc, function (val, key) {
+//    if (_.isObject(val) && _.isEmpty(val)) {
+//      delete doc[key];
+//    } else if (_.isArray(val)) {
+//      doc[key] = _.without(val, _.find(val, _.isEmpty));
+//    }else if (_.isObject(val)) {
+//      removeEmptyObjects(val)
+//    }
+//  })
+//}
+//var cleanTool = function (schema, doc) {
+//  schema.clean(doc);
+//  removeEmptyObjects(doc);
+//};
+
+//var validateSchemaContext = function (schema, doc, scopeForm) {
+//
+//
+//  //cleanTool(schema, doc);
+//
+//
+//  var valContext = schema.newContext();
+//
+//  //var self = this;
+//
+//  var valid = valContext.validate(doc);
+//  if (!valid) {
+//
+//    var invalidKeys = valContext.invalidKeys();
+//    invalidKeys.forEach(function (field) {
+//
+//      console.log("field", field);
+//      var formField = scopeForm[field.name];
+//      if (formField) {
+//        //debugger;
+//        formField.$setValidity(field.type, false);
+//        //self.partyForm.$setInvalid();
+//      } else {
+//        console.log("cannot set invalid state for %s", field.name);
+//      }
+//
+//    });
+//  }
+//  return valid;
+//};
+
 angular.module("parties").controller("PartiesListCtrl", ['$scope', '$meteor', '$rootScope', '$mdToast', "$q",
   function ($scope, $meteor, $rootScope, $mdToast, $q) {
 
-    $scope.search =  {
-      page : 1,
-      perPage : 3,
-      sort : {name: 1},
-      orderProperty : '1',
+    $scope.search = {
+      page: 1,
+      perPage: 3,
+      sort: {name: 1},
+      orderProperty: '1',
     };
 
 
@@ -36,7 +83,7 @@ angular.module("parties").controller("PartiesListCtrl", ['$scope', '$meteor', '$
 
 
     $scope.$on('$destroy', function () {
-      subscriptionHandle.stop();
+      subscriptionHandleX.stop();
     });
 
 
@@ -54,34 +101,32 @@ angular.module("parties").controller("PartiesListCtrl", ['$scope', '$meteor', '$
       var valContext = Schemas.PartyFormInsertSchema.newContext();
 
       var self = this;
-      if(!valContext.validate(party)){
+      if (!valContext.validate(party)) {
 
         var invalidKeys = valContext.invalidKeys();
         $scope.invalidKeys = invalidKeys;
 
 
-        invalidKeys.forEach(function(field){
+        invalidKeys.forEach(function (field) {
 
           console.log("field", field);
           var formField = self.partyForm[field.name];
-          if(formField){
+          if (formField) {
             //debugger;
             formField.$setValidity(field.type, false);
             //self.partyForm.$setInvalid();
-          }else {
-            console.log("cannot set invalid state for %s", field.name );
+          } else {
+            console.log("cannot set invalid state for %s", field.name);
           }
 
         });
 
 
-      }else {
+      } else {
 
 
         //$scope.parties.push(party);
         $meteor.call("insertParty", party).then(function (data) {
-
-
 
           console.log(arguments)
           self.newParty = {};
@@ -121,15 +166,29 @@ angular.module("parties").controller("PartyDetailsCtrl", [
   '$stateParams',
   '$meteor',
   '$state',
-  function ($scope, $stateParams, $meteor, $state) {
-    $scope.party = $meteor.object(Parties, $stateParams.partyId);
+  '$mdToast',
+  function ($scope, $stateParams, $meteor, $state, $mdToast) {
+    //$scope.party = $meteor.object(Parties, $stateParams.partyId, false);
 
-    $scope.updateParty = function (party) {
-      party.save().then(function (numberOfDocs) {
-        $state.go('parties');
-      }, function (err) {
-        console.log("update error", err);
+    $meteor.subscribe('partyDetail', $stateParams.partyId).then(function () {
+      $scope.party = Parties.findOne($stateParams.partyId);
+      if (!_.isArray($scope.party.emails)) {
+        $scope.party.emails = [];
+      }
+    });
+
+
+    $scope.updateParty = function (updateParty) {
+      //var isValid = validateSchemaContext(Schemas.PartyFormUpdateSchema, updateParty, this.partyForm);
+      //if (isValid) {
+      //console.log(updateParty)
+      $meteor.call("updateParty", updateParty).then(function (result) {
+        console.error("success", result)
+      }, function (error) {
+        $mdToast.show($mdToast.simple().content(error.message).position('top right'));
       });
+
+
     }
 
   }]);

@@ -9,7 +9,8 @@
 <body>
 <div class="body" ng-app="socially" translate-cloak layout="row" ng-controller="AppCtrl">
 
-    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-swipe-left="closeLeft()">
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')"
+                md-swipe-left="closeLeft()">
         <md-toolbar class="md-default-theme">
             <h1 class="md-toolbar-tools">
                 <a ng-href="/" layout="row" flex="" href="/">
@@ -23,7 +24,10 @@
                     <md-button ui-sref="parties">Home</md-button>
                 </li>
                 <li>
-                    <md-button ui-sref="app.banana({'locale':'de'})" >Banana</md-button>
+                    <md-button ui-sref="app.banana({'locale':'de'})">Banana</md-button>
+                </li>
+                <li>
+                    <md-button ui-sref="trainingInsert">Create Training</md-button>
                 </li>
             </ul>
         </md-content>
